@@ -1,0 +1,126 @@
+Visão Geral sobre Docker 💻
+
+
+# Inicia o docker no Fedora
+sudo service docker start
+
+
+# Retorna a versão utilizada
+docker version
+
+
+# docker ps ====> Retorna os container ativos
+         ps -a ==> Retorna os status e status de todos os containers que estão ativos e inativos
+
+
+# Executa container
+docker run <nome_imagem>
+
+
+# Deixa rodando o container e o terminal da aplicação 
+docker run -it <nome_imagem>
+
+
+# Deixa executando o container em background
+docker run -it -d <nome_imagem>
+
+
+# Os containers são isolados e não possuem contato com nada do lado de fora, para isso se usa a tag -p para abrir uma porta
+Algo útil caso queira usar o nginx por exemplo: docker run -d -p 80:80 nginx
+
+
+# Parando container
+docker stop <nome_usado_na_imagem> ===> Para um container em executação
+
+
+# Renomeando container
+docker run -d --name Nginx nginx ====> Com a tag name você poderá setar o próprio nome do container
+
+
+# Renomeando imagem
+docker tag <id_imagem> meu_projeto
+
+
+# Iniciando imagem com nome e tag
+docker build -t meuubuntu:2.0.0 .
+
+
+# Tag na imagem
+docker tag <id_imagem> meu_projeto:1.0.0
+
+
+# Para reiniciar um trabalho num container que foi parado é necessário usar: docker start <id_container>
+  É importante usar o start pois cada run iniciará um novo container
+
+
+# Verificamos o que aconteceu dentro de um container
+docker logs <id_container>
+
+
+# Remove um container da máquina, se estiver sendo rodado utilize a tag -f (force) para pará-lo
+docker -rm <id_container>
+
+
+# Retorna todas as imagens que estão instaladas no seu docker
+docker images
+
+
+# Instalar uma imagem no nosso docker
+docker pull <imagem>
+
+
+# Criando uma imagem
+- Criar apenas um arquivo no diretório intitulado "Dockerfile"
+- Utilizar as seguintes instruções no arquivo: FROM, WORKDIR, COPY, RUN, CMD ...
+
+
+# Rodando a imagem criada
+- docker build .                                   "Utilize o ponto se estiver dentro do diretório"
+- docker image ls                                  "Garanta que está tudo ok"
+- docker run -d -p 80:80 --name primeira imagem    "Utilize uma porta se necessário e mude o nome do container"
+
+
+# Removendo imagem
+docker rmi -f <imagem>           "Pode ser usado a tag -f para forçar a remoção caso o container esteja ligado!"
+
+
+# Pedindo ajuda
+docker COMMAND --help
+
+
+# Removendo images, containers e networks que não estão sendo utilizados (TEM LIGA QUE VAI REMOVER TUDO CARA!)
+docker system prune
+
+
+# Removendo automáticamente após o utilizar
+docker run --rm <container>
+
+
+# Copiando arquivos
+docker cp <nome_container>:/<path> . /<new_path>/    "Esteja na mesma pasta quando for fazer essa cópia"
+
+
+# Verificando o processamento do container
+docker top <nome_container>
+
+
+# Inspecionando o container
+docker inspect <nome_container>
+
+
+# Verificando o processamento dos containers
+docker stats 
+
+
+## Autenticação no Docker Hub
+docker login
+docker logout
+
+## Enviar imagem ao Docker Hub
+docker build -t <nome_user>/<nome_imagem> .
+docker push <imagem>  "É necessário possuir um repositório"
+
+## Enviando atualização
+É necessário trocar apenas a tag para fazer a atualização
+docker build -t <nome_user>/<nome_imagem>:novaversao
+docker push -t <nome_user>/<nome_imagem>:novaversao
