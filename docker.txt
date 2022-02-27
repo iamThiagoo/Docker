@@ -124,3 +124,31 @@ docker push <imagem>  "É necessário possuir um repositório"
 É necessário trocar apenas a tag para fazer a atualização
 docker build -t <nome_user>/<nome_imagem>:novaversao
 docker push -t <nome_user>/<nome_imagem>:novaversao
+
+
+## Volumes é uma forma dev salvar dados em aplicações para caso o container seja removido não os perca Existem 3 tipo de volumes:
+ - Anônimos (anonymous): Diretórios criados com a flag -V, porém com nome aleatório;
+   docker run -v /data
+
+ - Nomeados(names) : Com nomes, assim podemos nos referir a eles facilmente;
+   docker run -v nomedovolume:/data
+
+ - Bind Mounts: Uma forma de salvar dados, sem o gerenciamento do Docker e iremos informar um diretório.
+   docker run -v /dir/data/:/data
+   Além disso com o Bind Mount é possível atualizar em tempo real o nosso projeto
+
+Com esse comando, podemos ver todos os volumes do nosso ambiente
+docker volume ls     "Irá listar do tipo anonymous e named"
+
+Criar volume de forma manual:
+docker volume create <nome>
+Dessa forma estamos criando um volume do tipo named
+
+Removendo um volume
+docker volume rm <nome>  "CUIDADO! POIS TU VAI PERDER TUDO MANO"
+
+Removendo os volumes que não estão sendo utilizados
+docker volume prune      "CUIDADO! TU VAI PERDER TUDO MANO!"
+
+Criando volume apenas para leitura
+docker run -v volume:/data:ro   "Abreviação de read only"
