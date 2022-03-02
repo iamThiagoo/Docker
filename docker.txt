@@ -2,11 +2,11 @@ Visão Geral sobre Docker 💻
 
 
 # Inicia o docker no Fedora
-sudo service docker start
+  - sudo service docker start
 
 
 # Retorna a versão utilizada
-docker version
+  - docker version
 
 
 # docker ps ====> Retorna os container ativos
@@ -14,15 +14,15 @@ docker version
 
 
 # Executa container
-docker run <nome_imagem>
+  - docker run <nome_imagem>
 
 
 # Deixa rodando o container e o terminal da aplicação 
-docker run -it <nome_imagem>
+  - docker run -it <nome_imagem>
 
 
 # Deixa executando o container em background
-docker run -it -d <nome_imagem>
+  - docker run -it -d <nome_imagem>
 
 
 # Os containers são isolados e não possuem contato com nada do lado de fora, para isso se usa a tag -p para abrir uma porta
@@ -30,23 +30,23 @@ Algo útil caso queira usar o nginx por exemplo: docker run -d -p 80:80 nginx
 
 
 # Parando container
-docker stop <nome_usado_na_imagem> ===> Para um container em executação
+  - docker stop <nome_usado_na_imagem> ===> Para um container em executação
 
 
 # Renomeando container
-docker run -d --name Nginx nginx ====> Com a tag name você poderá setar o próprio nome do container
+  - docker run -d --name Nginx nginx ====> Com a tag name você poderá setar o próprio nome do container
 
 
 # Renomeando imagem
-docker tag <id_imagem> meu_projeto
+  - docker tag <id_imagem> meu_projeto
 
 
 # Iniciando imagem com nome e tag
-docker build -t meuubuntu:2.0.0 .
+  - docker build -t meuubuntu:2.0.0 .
 
 
 # Tag na imagem
-docker tag <id_imagem> meu_projeto:1.0.0
+  - docker tag <id_imagem> meu_projeto:1.0.0
 
 
 # Para reiniciar um trabalho num container que foi parado é necessário usar: docker start <id_container>
@@ -54,76 +54,76 @@ docker tag <id_imagem> meu_projeto:1.0.0
 
 
 # Verificamos o que aconteceu dentro de um container
-docker logs <id_container>
+  - docker logs <id_container>
 
 
 # Remove um container da máquina, se estiver sendo rodado utilize a tag -f (force) para pará-lo
-docker -rm <id_container>
+  - docker -rm <id_container>
 
 
 # Retorna todas as imagens que estão instaladas no seu docker
-docker images
+  - docker images
 
 
 # Instalar uma imagem no nosso docker
-docker pull <imagem>
+  - docker pull <imagem>
 
 
 # Criando uma imagem
-- Criar apenas um arquivo no diretório intitulado "Dockerfile"
-- Utilizar as seguintes instruções no arquivo: FROM, WORKDIR, COPY, RUN, CMD ...
+  - Criar apenas um arquivo no diretório intitulado "Dockerfile"
+  - Utilizar as seguintes instruções no arquivo: FROM, WORKDIR, COPY, RUN, CMD ...
 
 
 # Rodando a imagem criada
-- docker build .                                   "Utilize o ponto se estiver dentro do diretório"
-- docker image ls                                  "Garanta que está tudo ok"
-- docker run -d -p 80:80 --name primeira imagem    "Utilize uma porta se necessário e mude o nome do container"
+  - docker build .                                   "Utilize o ponto se estiver dentro do diretório"
+  - docker image ls                                  "Garanta que está tudo ok"
+  - docker run -d -p 80:80 --name primeira imagem    "Utilize uma porta se necessário e mude o nome do container"
 
 
 # Removendo imagem
-docker rmi -f <imagem>           "Pode ser usado a tag -f para forçar a remoção caso o container esteja ligado!"
+  - docker rmi -f <imagem>           "Pode ser usado a tag -f para forçar a remoção caso o container esteja ligado!"
 
 
 # Pedindo ajuda
-docker COMMAND --help
+  - docker COMMAND --help
 
 
 # Removendo images, containers e networks que não estão sendo utilizados (TEM LIGA QUE VAI REMOVER TUDO CARA!)
-docker system prune
+  - docker system prune
 
 
 # Removendo automáticamente após o utilizar
-docker run --rm <container>
+  - docker run --rm <container>
 
 
 # Copiando arquivos
-docker cp <nome_container>:/<path> . /<new_path>/    "Esteja na mesma pasta quando for fazer essa cópia"
+  - docker cp <nome_container>:/<path> . /<new_path>/    "Esteja na mesma pasta quando for fazer essa cópia"
 
 
 # Verificando o processamento do container
-docker top <nome_container>
+  - docker top <nome_container>
 
 
 # Inspecionando o container
-docker inspect <nome_container>
+  - docker inspect <nome_container>
 
 
 # Verificando o processamento dos containers
-docker stats 
+  - docker stats 
 
 
 ## Autenticação no Docker Hub
-docker login
-docker logout
+  - docker login
+  - docker logout
 
 ## Enviar imagem ao Docker Hub
-docker build -t <nome_user>/<nome_imagem> .
-docker push <imagem>  "É necessário possuir um repositório"
+  - docker build -t <nome_user>/<nome_imagem> .
+  - docker push <imagem>  "É necessário possuir um repositório"
 
 ## Enviando atualização
 É necessário trocar apenas a tag para fazer a atualização
-docker build -t <nome_user>/<nome_imagem>:novaversao
-docker push -t <nome_user>/<nome_imagem>:novaversao
+  - docker build -t <nome_user>/<nome_imagem>:novaversao
+  - docker push -t <nome_user>/<nome_imagem>:novaversao
 
 
 ## Volumes é uma forma dev salvar dados em aplicações para caso o container seja removido não os perca Existem 3 tipo de volumes:
@@ -138,17 +138,46 @@ docker push -t <nome_user>/<nome_imagem>:novaversao
    Além disso com o Bind Mount é possível atualizar em tempo real o nosso projeto
 
 Com esse comando, podemos ver todos os volumes do nosso ambiente
-docker volume ls     "Irá listar do tipo anonymous e named"
+ - docker volume ls     "Irá listar do tipo anonymous e named"
 
 Criar volume de forma manual:
-docker volume create <nome>
-Dessa forma estamos criando um volume do tipo named
+ - docker volume create <nome>
+  Dessa forma estamos criando um volume do tipo named
 
 Removendo um volume
-docker volume rm <nome>  "CUIDADO! POIS TU VAI PERDER TUDO MANO"
+ - docker volume rm <nome>  "CUIDADO! POIS TU VAI PERDER TUDO MANO"
 
 Removendo os volumes que não estão sendo utilizados
-docker volume prune      "CUIDADO! TU VAI PERDER TUDO MANO!"
+ - docker volume prune      "CUIDADO! TU VAI PERDER TUDO MANO!"
 
 Criando volume apenas para leitura
-docker run -v volume:/data:ro   "Abreviação de read only"
+ - docker run -v volume:/data:ro   "Abreviação de read only"
+
+
+## Networks é uma forma de gerenciar conexões do Docker com outras plataformas ou até mesmo entre containers
+
+Para isso precisamos entender que os ccontainer costumam possuir 3 tipos de comunicação: 
+ - Externa: Com uma API de um servidor remoto
+ - Com o host: Com a nossa máquina
+ - Entre containers: Utiliza o drive bridge e permite a comunicação entre dois ou mais containers
+
+Tipos de drivers/redes:
+ - Bridge: o mais comum e default do Docker;
+ - Host: permite a conexão entre um container a uma maquina que está hosteando o Docker
+ - Macvlan: permite a conexão a um container por um MAC address; 
+ - none: remove todas as conexões de rede em um container;
+ - plugins: permite extensões de terceiros para criar outras redes;
+
+Listando todas as redes
+ - docker network ls
+
+Criando rede
+ - network create <nome>      "Será criado no estilo default = bridge"
+Usando outro tipo de rede
+ - network create -d macvlan <nome>
+
+Removendo redes
+ - docker network rm <nome>   "CUIDADO COM CONTAINER CONECTADOS"
+
+Removendo redes não utilizadas
+ - docker network prune       "Iremos receber uma mensagem de confirmação"

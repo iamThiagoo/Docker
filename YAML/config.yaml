@@ -1,0 +1,37 @@
+# Cuide da identação e cada linha é o final de uma instrução
+nome: "Thiago"
+idade: 18
+
+objeto:
+  versão: 5
+  titulo: "Olá, tudo certo?"
+
+obj: {a: 1, b: 2, c: 3}
+
+# Aceita números inteiros e floats
+inteiro: 5
+float: 1.759
+
+# Aceita texto com e sem aspas
+com: "Olá"
+sem: Olá
+
+# Dados null
+nulo: ~
+nulo2: null
+
+# Dados booleanos
+verdadeiro: True
+verdadeiro2: On
+
+falso: false
+falso2: Off
+
+# Arrays
+Primeira: [1 ,2, 3, 4, 5, 6]
+Segunda: 
+- 1
+- 2
+- 3
+- 4
+- 5
