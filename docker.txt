@@ -200,3 +200,7 @@ Removendo redes não utilizadas
   ## Rodando em background 
   - docker-compose up -d
   - docker-compose down
+
+# Variáveis de Ambiente: Geralmente guardada em arquivos chamados "env_file", as variáveis pode ser chamadas pela sintaxe ${VARIAVEL}
+  É bastante útil quando o dado é sensível e não pode ser compartilhado, como uma senha
+  
