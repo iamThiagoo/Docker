@@ -181,3 +181,22 @@ Removendo redes
 
 Removendo redes não utilizadas
  - docker network prune       "Iremos receber uma mensagem de confirmação"
+
+
+# Docker Compose: É uma ferramenta que liga múltiplos containers e teremos um arquivo que orquestra tudo isso
+
+  - docker-compose --version    "Mostra a versão do docker"
+  Caso esteja usando linux é preciso instalar a imagem do Docker
+
+  Estrutura do docker compose: 
+    - Arquivo yml
+      - version:
+      - services:
+      - volumes:
+
+  docker-compose up    "Roda o docker compose"
+  ctrl + C             "Para o docker compose" 
+
+  ## Rodando em background 
+  - docker-compose up -d
+  - docker-compose down
